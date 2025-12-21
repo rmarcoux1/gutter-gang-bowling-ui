@@ -1,0 +1,160 @@
+{
+  "players": ["Roland", "Jack", "Paul", "Greg", "Ryan", "Ken", "Kyle"],
+  "weeks": [
+    {
+      "week": "11/13/2025",
+      "bowlerStats": {
+        "Roland":   { "strings": [81, 85, 79], "orangePins": 1 },
+        "Jack":   { "strings": [92, 90, 87], "orangePins": 2 },
+        "Paul":  { "strings": [76, 85, 111], "orangePins": 1 },
+        "Greg":   { "strings": [82, 71, 73], "orangePins": 1 },
+        "Ryan": { "strings": [74, 82, 89], "orangePins": 1 }
+      },
+      "money": {
+        "Roland": "1.50",
+        "Jack": "1.25",
+        "Paul": "1.75",
+        "Greg": "2.25",
+        "Ryan": "3.25"
+      }
+    },
+    {
+      "week": "11/20/2025",
+      "bowlerStats": {
+        "Roland":   { "strings": [117, 77, 88], "orangePins": 2 },
+        "Jack":   { "strings": [78, 71, 95], "orangePins": 2 },
+        "Paul":  { "strings": [91, 81, 101], "orangePins": 2 },
+        "Greg":   { "strings": [88, 79, 78], "orangePins": 2 },
+        "Ryan": { "strings": [98, 82, 77], "orangePins": 5 }
+      },
+      "money": {
+        "Roland": "2.50",
+        "Jack": "2.75",
+        "Paul": "2.75",
+        "Greg": "3.00",
+        "Ryan": "3.75"
+      }
+    },
+    {
+      "week": "12/04/2025",
+      "bowlerStats": {
+        "Roland":   { "strings": [80, 90, 104], "orangePins": 2 },
+        "Jack":   { "strings": [82, 95, 96], "orangePins": 3 },
+        "Paul":  { "strings": [92, 103, 86], "orangePins": 0 },
+        "Greg":   { "strings": [87, 83, 91], "orangePins": 4 },
+        "Ryan": { "strings": [93, 75, 94], "orangePins": 2 }
+      },
+      "money": {
+        "Roland": "2.75",
+        "Jack": "2.75",
+        "Paul": "2.00",
+        "Greg": "3.25",
+        "Ryan": "3.75"
+      }
+    },
+    {
+      "week": "12/11/2025",
+      "bowlerStats": {
+        "Roland": {
+          "strings": [
+            79,
+            73,
+            79
+          ],
+          "orangePins": 4
+        },
+        "Jack": {
+          "strings": [
+            82,
+            77,
+            68
+          ],
+          "orangePins": 2
+        },
+        "Paul": {
+          "strings": [
+            105,
+            88,
+            90
+          ],
+          "orangePins": 1
+        },
+        "Ken": {
+          "strings": [
+            85,
+            71,
+            82
+          ],
+          "orangePins": 3
+        },
+        "Ryan": {
+          "strings": [
+            107,
+            91,
+            76
+          ],
+          "orangePins": 1
+        }
+      },
+      "money": {
+        "Roland": "3.75",
+        "Jack": "2.75",
+        "Paul": ".75",
+        "Ken": "2.75",
+        "Ryan": "2.00"
+      }
+    },
+    {
+      "week": "12/18/2025",
+      "bowlerStats": {
+        "Roland": {
+          "strings": [
+            87,
+            89,
+            87
+          ],
+          "orangePins": 1
+        },
+        "Jack": {
+          "strings": [
+            99,
+            73,
+            92
+          ],
+          "orangePins": 3
+        },
+        "Paul": {
+          "strings": [
+            81,
+            131,
+            100
+          ],
+          "orangePins": 3
+        },
+        "Kyle": {
+          "strings": [
+            88,
+            95,
+            86
+          ],
+          "orangePins": 2
+        },
+        "Ryan": {
+          "strings": [
+            79,
+            97,
+            91
+          ],
+          "orangePins": 3
+        }
+      },
+      "money": {
+        "Roland": "4.50",
+        "Jack": "4.75",
+        "Paul": "1.25",
+        "Kyle": "4.75",
+        "Ryan": "4.50"
+      }
+    }
+  ]
+}
