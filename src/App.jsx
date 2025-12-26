@@ -1,41 +1,89 @@
 import { useEffect, useState } from 'react'
-import AveragesChart from './components/AveragesChart'
-import OrangePinsChart from './components/OrangePinsChart'
-import MoneyTable from './components/MoneyTable'
-import BowlerCharts from './components/BowlerCharts'
+import PlayerSelector from './components/PlayerSelector'
 
-function App() {
-    const [data, setData] = useState(null)
+//import { players } from './data/players'
+
+import StatCard from './components/StatsCard'
+import ScoreTrend from './components/ScoreTrend'
+import ScoreDistribution from './components/ScoreDistribution'
+import PinsPerBall from './components/PinsPerBall'
+import FrameEfficiency from './components/FrameEfficiency'
+import CommonLeaves from './components/CommonLeaves'
+import PinHeatmap from './components/PinHeatmap'
+import Records from './components/Records'
+import PressureStats from './components/PressureStats'
+
+
+import { supabase } from './lib/supabase'
+
+
+export default function App() {
+   // const [playerId, setPlayerId] = useState(players[0].id)
+
+    const [players, setPlayers] = useState([])
+    const [playerId, setPlayerId] = useState(null)
+
+    //const player = players.find(p => p.id === playerId)
 
     useEffect(() => {
-        fetch('/stats.json')
-            .then(res => res.json())
-            .then(setData)
-            .catch(err => console.error('Failed to load stats:', err))
+        async function loadPlayers() {
+            const { data, error } = await supabase
+                .from('players')
+                .select('*')
+                .order('name')
+
+            if (!error && data.length) {
+                setPlayers(data)
+                setPlayerId(data[0].id)
+            }
+        }
+
+        loadPlayers()
     }, [])
 
-    if (!data) return <div style={{ color: '#F3F4F6', textAlign: 'center', padding: 50 }}>Loading stats...</div>
 
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            background: '#0f172a',
-            minHeight: '100vh',
-            padding: 20
-        }}>
-            <h1 style={{ color: '#F3F4F6', marginBottom: 40, textAlign: 'center' }}>
-                Gutter Gang Bowling Stats 🎳
-            </h1>
+        <div className="app">
+            <div className="header">
+                <h1>The Gutter Gang Dashboard</h1>
 
-            <div style={{ width: '100%', maxWidth: 1000 }}>
-                <BowlerCharts weeks={data.weeks} players={data.players} />
-                <OrangePinsChart weeks={data.weeks} players={data.players} />
-                <MoneyTable weeks={data.weeks} players={data.players} />
+                <PlayerSelector
+                    players={players}
+                    selectedId={playerId}
+                    onChange={setPlayerId}
+                />
+            </div>
+
+            {/*<div className="stats-grid">*/}
+            {/*    <StatCard label="Average (Last 10)" value={player.stats.average} />*/}
+            {/*    <StatCard label="High Game" value={player.stats.highGame} />*/}
+            {/*    <StatCard label="High Series" value={player.stats.highSeries} />*/}
+            {/*    <StatCard label="Games Played" value={player.stats.gamesPlayed} />*/}
+            {/*    <StatCard label="Strike %" value={player.stats.strikePct} />*/}
+            {/*    <StatCard label="Spare %" value={player.stats.sparePct} />*/}
+            {/*    <StatCard label="Triple-Clean %" value={player.stats.tripleCleanPct} />*/}
+            {/*    <StatCard label="Pins Per Ball" value={player.stats.pinsPerBall} />*/}
+            {/*</div>*/}
+
+            <div className="main-grid">
+                <ScoreTrend />
+                <ScoreDistribution />
+            </div>
+
+            <div className="secondary-grid">
+                <PinsPerBall />
+                <FrameEfficiency />
+            </div>
+
+            <div className="secondary-grid">
+                <PinHeatmap />
+                <CommonLeaves />
+            </div>
+
+            <div className="secondary-grid">
+                <Records />
+                <PressureStats />
             </div>
         </div>
     )
 }
-
-export default App

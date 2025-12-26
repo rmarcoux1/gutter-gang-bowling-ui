@@ -1,9 +1,8 @@
-// src/components/StatsCard.jsx
-export default function StatsCard({ title, value }) {
+export default function StatCard({ label, value }) {
     return (
-        <div className="card">
-            <h3>{title}</h3>
-            <div className="value">{value}</div>
+        <div className="stat-card">
+            <div className="stat-label">{label}</div>
+            <div className="stat-value">{value}</div>
         </div>
     )
 }
