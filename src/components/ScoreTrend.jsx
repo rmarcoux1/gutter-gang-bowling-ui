@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {useMemo, useState} from 'react'
 import {
     LineChart,
     Line,
@@ -9,37 +9,36 @@ import {
     CartesianGrid,
 } from 'recharts'
 
-const DATA = {
-    last10: [
-        { game: 1, score: 118 },
-        { game: 2, score: 130 },
-        { game: 3, score: 122 },
-        { game: 4, score: 117 },
-        { game: 5, score: 129 },
-        { game: 6, score: 138 },
-        { game: 7, score: 127 },
-        { game: 8, score: 132 },
-        { game: 9, score: 121 },
-        { game: 10, score: 125 },
-    ],
-    season: [
-        { game: 1, score: 110 },
-        { game: 5, score: 120 },
-        { game: 10, score: 128 },
-        { game: 15, score: 122 },
-        { game: 20, score: 130 },
-    ],
-    career: [
-        { game: 1, score: 95 },
-        { game: 20, score: 105 },
-        { game: 40, score: 112 },
-        { game: 60, score: 118 },
-        { game: 76, score: 121 },
-    ],
+
+function buildTrendData(games, range) {
+    if (!games) return []
+
+    let filtered = [...games]
+
+    if (range === 'last10') {
+        filtered = filtered.slice(-10)
+    }
+
+    if (range === 'season') {
+        const currentYear = new Date().getFullYear()
+        filtered = filtered.slice(
+            g => new Date(g.date).getFullYear() === currentYear
+        )
+    }
+
+    return filtered.map((g, i) => ({
+        game: i+1,
+        score: g.total_score,
+    }))
 }
 
-export default function ScoreTrend() {
+export default function ScoreTrend({ games }) {
     const [range, setRange] = useState('last10')
+
+    const data = useMemo(
+        () => buildTrendData(games, range),
+        [games, range]
+    )
 
     return (
         <div className="card">
@@ -60,7 +59,7 @@ export default function ScoreTrend() {
             </div>
 
             <ResponsiveContainer width="100%" height={260}>
-                <LineChart data={DATA[range]}>
+                <LineChart data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="game" />
                     <YAxis domain={[80, 160]} />
