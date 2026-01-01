@@ -18,7 +18,10 @@ export function useGames(playerId) {
                 date,
                 total_score,
                 orange_pins,
-                money_owed
+                money_owed,
+                strike_count,
+                spare_count,
+                ten_count
                 `)
                 .eq('player_id', playerId)
                 .order('date', {ascending: true})
