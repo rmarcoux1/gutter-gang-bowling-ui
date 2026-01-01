@@ -32,9 +32,11 @@ export default function Dashboard({
         games.length === 0
             ? 0
             : (
-                games.reduce((sum, g) => sum + (g.strike_count || 0), 0) /
-                (games.length) * 10
-            )
+            games.reduce((sum, g) => sum + (g.strike_count || 0), 0) /
+            games.length
+        ) * 10;
+
+    const strikePercentageRounded = strikePercentage.toFixed(2)
 
     const sparePercentage =
         games.length === 0
@@ -44,6 +46,8 @@ export default function Dashboard({
                 (games.length) * 10
             )
 
+    const sparePercentageRounded = sparePercentage.toFixed(2)
+
     const tensPercentage =
         games.length === 0
             ? 0
@@ -51,6 +55,8 @@ export default function Dashboard({
                 games.reduce((sum, g) => sum + (g.ten_count || 0), 0) /
                 (games.length) * 10
             )
+
+    const tensPercentageRounded = tensPercentage.toFixed(2)
 
     return (
         <>
@@ -73,11 +79,11 @@ export default function Dashboard({
             </div>
             <div className="stats-grid">
                 <StatCard label="Total Strikes" value={totalStrikes}/>
-                <StatCard label="Strike Percentage" value={`${strikePercentage}%`}/>
+                <StatCard label="Strike Percentage" value={`${strikePercentageRounded}%`}/>
                 <StatCard label="Total Spares" value={totalSpares}/>
-                <StatCard label="Spare Percentage" value={`${sparePercentage}%`}/>
+                <StatCard label="Spare Percentage" value={`${sparePercentageRounded}%`}/>
                 <StatCard label="Total Tens" value={totalTens}/>
-                <StatCard label="Tens Percentage" value={`${tensPercentage}%`}/>
+                <StatCard label="Tens Percentage" value={`${tensPercentageRounded}%`}/>
             </div>
 
             <div className="main-grid">
