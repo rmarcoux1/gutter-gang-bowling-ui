@@ -12,6 +12,7 @@ const INITIAL_FORM = {
     strike_count: 0,
     spare_count: 0,
     ten_count: 0,
+    game_number: 0,
 }
 
 export default function GameForm({ players = [], onSaved }) {
@@ -38,6 +39,7 @@ export default function GameForm({ players = [], onSaved }) {
             strike_count: Number(form.strike_count),
             spare_count: Number(form.spare_count),
             ten_count: Number(form.ten_count),
+            game_number: Number(form.game_number),
         })
 
         setLoading(false)
@@ -56,7 +58,7 @@ export default function GameForm({ players = [], onSaved }) {
             <h2 className="form-title">Add Game</h2>
 
             <div className="form-section">
-                <label className="form-label">Player</label>
+                <label className="form-label">Player:</label>
                 <select
                     name="player_id"
                     value={form.player_id}
@@ -72,7 +74,7 @@ export default function GameForm({ players = [], onSaved }) {
             </div>
 
             <div className="form-section">
-                <label className="form-label">Date</label>
+                <label className="form-label">Date:</label>
                 <input
                     type="date"
                     name="date"
@@ -84,7 +86,24 @@ export default function GameForm({ players = [], onSaved }) {
             </div>
 
             <div className="form-section">
-                <label className="form-label">Score</label>
+                <label className="form-label">Game Number:</label>
+
+                <select
+                    name="game_number"
+                    value={form.game_number}
+                    onChange={handleChange}
+                    className="form-select"
+                    required
+                >
+                    <option value="">Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+            <div className="form-section">
+                <label className="form-label">Score:</label>
                 <input
                     type="number"
                     name="total_score"
@@ -97,25 +116,25 @@ export default function GameForm({ players = [], onSaved }) {
 
             <div className="form-section form-stats">
                 <StatInput
-                    label="Orange Pins"
+                    label="Orange Pins:"
                     name="orange_pins"
                     value={form.orange_pins}
                     onChange={handleChange}
                 />
                 <StatInput
-                    label="Strikes"
+                    label="Strikes:"
                     name="strike_count"
                     value={form.strike_count}
                     onChange={handleChange}
                 />
                 <StatInput
-                    label="Spares"
+                    label="Spares:"
                     name="spare_count"
                     value={form.spare_count}
                     onChange={handleChange}
                 />
                 <StatInput
-                    label="Tens"
+                    label="Tens:"
                     name="ten_count"
                     value={form.ten_count}
                     onChange={handleChange}
@@ -124,7 +143,7 @@ export default function GameForm({ players = [], onSaved }) {
 
 
             <div className="form-section">
-                <label className="form-label">Money Owed</label>
+                <label className="form-label">Money Owed:</label>
                 <input
                     type="number"
                     step="0.25"
@@ -161,7 +180,7 @@ function FormField({label, children}) {
 function StatInput({label, name, value, onChange}) {
     return (
         <div className="space-y-1">
-            <label className="text-sm text-gray-600">{label}</label>
+        <label className="text-sm text-gray-600">{label}</label>
             <input
                 type="number"
                 min="0"

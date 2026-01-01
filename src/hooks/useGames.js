@@ -25,6 +25,7 @@ export function useGames(playerId) {
                 `)
                 .eq('player_id', playerId)
                 .order('date', {ascending: true})
+                .order('game_number', {ascending: true})
 
             if (!error) setGames(data)
             setLoading(false)
